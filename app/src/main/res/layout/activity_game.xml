@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
         <variable
             name="gameViewModel"
             type="com.example.pc.tresenraya_mvvm.viewmodel.GameViewModel" />
@@ -12,7 +11,7 @@
     <android.support.v7.widget.GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/white"
+        android:background="@android:color/black"
         android:padding="32dp">
 
         <TextView

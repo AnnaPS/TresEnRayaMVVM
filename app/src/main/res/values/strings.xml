@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">TresEnRaya-MVVM</string>
+    <string name="player1_hint">Jugador 1</string>
+    <string name="player2_hint">Jugador 2</string>
+    <string name="game_dialog_title">Nuevo Juego</string>
+    <string name="done">Aceptar</string>
+    <string name="game_dialog_empty_name">El nombre no puede estar vacio</string>
+    <string name="game_dialog_same_names">Los nopmbres no pueden ser iguales</string>
+    <string name="game_end_dialog_headline">El ganador es</string>
 </resources>

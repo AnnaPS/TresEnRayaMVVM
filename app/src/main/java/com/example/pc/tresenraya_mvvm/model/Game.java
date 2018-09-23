@@ -1,17 +1,16 @@
 package com.example.pc.tresenraya_mvvm.model;
 
+
 import android.arch.lifecycle.MutableLiveData;
 import android.util.Log;
 
 import static com.example.pc.tresenraya_mvvm.utilities.StringUtility.isNullOrEmpty;
 
 public class Game {
-
     /**
      * Representa un juego real de Tres en raya, y por lo tanto tiene 2 jugadores, una lista (matriz 3x3) de 9 celdas.
      * En cada ronda del juego, un jugador realiza un movimiento, de ahí el atributo actualPlayer, y finalmente un ganador.
      */
-
 
     private static final String TAG = Game.class.getSimpleName();
     private static final int BOARD_SIZE = 3;
@@ -30,60 +29,47 @@ public class Game {
         player2 = new Player(playerTwo, "o");
         currentPlayer = player1;
     }
-
-    // metodo para cambiar de jugador
-    public void switchPlayer() {
-        currentPlayer = currentPlayer == player1 ? player2 : player1;
-    }
-
     //metodo para saber si el juego terminó
     public boolean hasGameEnded() {
         if (hasThreeSameHorizontalCells() || hasThreeSameVerticalCells() || hasThreeSameDiagonalCells()) {
             winner.setValue(currentPlayer);
             return true;
-
         }
 
         if (isBoardFull()) {
             winner.setValue(null);
             return true;
         }
+
         return false;
     }
-
-
     // saber si hay 3 simbolos iguales horizontales
-    private boolean hasThreeSameHorizontalCells() {
+    public boolean hasThreeSameHorizontalCells() {
         try {
-            for (int i = 0; i < BOARD_SIZE; i++) {
-                if (areEqual(cells[i][0], cells[i][1], cells[i][2])) {
+            for (int i = 0; i < BOARD_SIZE; i++)
+                if (areEqual(cells[i][0], cells[i][1], cells[i][2]))
                     return true;
-                }
-            }
+
             return false;
         } catch (NullPointerException e) {
             Log.e(TAG, e.getMessage());
             return false;
         }
     }
-
     // saber si hay 3 simbolos iguales verticales
-    private boolean hasThreeSameVerticalCells() {
+    public boolean hasThreeSameVerticalCells() {
         try {
-            for (int i = 0; i < BOARD_SIZE; i++) {
-                if (areEqual(cells[0][i], cells[1][i], cells[2][i])) {
+            for (int i = 0; i < BOARD_SIZE; i++)
+                if (areEqual(cells[0][i], cells[1][i], cells[2][i]))
                     return true;
-                }
-            }
             return false;
         } catch (NullPointerException e) {
             Log.e(TAG, e.getMessage());
             return false;
         }
     }
-
     // saber si hay 3 simbolos iguales diagonales
-    private boolean hasThreeSameDiagonalCells() {
+    public boolean hasThreeSameDiagonalCells() {
         try {
             return areEqual(cells[0][0], cells[1][1], cells[2][2]) ||
                     areEqual(cells[0][2], cells[1][1], cells[2][0]);
@@ -92,9 +78,8 @@ public class Game {
             return false;
         }
     }
-
     // comprobar si el tablero está completo
-    private boolean isBoardFull() {
+    public boolean isBoardFull() {
         for (Cell[] row : cells)
             for (Cell cell : row)
                 if (cell == null || cell.isEmpty())
@@ -118,18 +103,22 @@ public class Game {
             if (cell == null || isNullOrEmpty(cell.player.value))
                 return false;
 
-        Cell comparacionBase = cells[0];
-        for (int i = 0; i < cells.length; i++)
-            if (!comparacionBase.player.value.equals(cells[i].player.value))
+        Cell comparisonBase = cells[0];
+        for (int i = 1; i < cells.length; i++)
+            if (!comparisonBase.player.value.equals(cells[i].player.value))
                 return false;
-        return true;
 
+        return true;
+    }
+    // metodo para cambiar de jugador
+    public void switchPlayer() {
+        currentPlayer = currentPlayer == player1 ? player2 : player1;
     }
     // volver a comenzar la partida
-    public void reset(){
-        player1 =null;
+    public void reset() {
+        player1 = null;
         player2 = null;
-        currentPlayer= null;
+        currentPlayer = null;
         cells = null;
     }
 }

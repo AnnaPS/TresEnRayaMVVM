@@ -2,5 +2,10 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#03f2ff</color>
+    <color name="cell_color">#f28900</color>
+    <color name="winner_color">#67e600</color>
+    <color name="black_color">#0e0e0e</color>
+    <color name="grey_color">#686464</color>
+
 </resources>

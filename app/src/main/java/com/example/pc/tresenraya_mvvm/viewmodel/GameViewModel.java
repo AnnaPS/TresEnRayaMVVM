@@ -20,25 +20,23 @@ public class GameViewModel extends ViewModel {
     public ObservableArrayMap<String, String> cells;
     private Game game;
 
-    public void init(String player1, String player2){
-        game = new Game(player1,player2);
+    public void init(String player1, String player2) {
+        game = new Game(player1, player2);
         cells = new ObservableArrayMap<>();
     }
-
     /**
      * Metodo que se vincula al xml para conocer cada vez que se pulsa una celda
      * @param row
      * @param column
      */
-    public void onClickedCellAt(int row, int column){
-        if(game.cells[row][column] == null){
-            new Cell(game.currentPlayer);
+    public void onClickedCellAt(int row, int column) {
+        if (game.cells[row][column] == null) {
+            game.cells[row][column] = new Cell(game.currentPlayer);
             cells.put(stringFromNumbers(row, column), game.currentPlayer.value);
-            if(game.hasGameEnded()){
+            if (game.hasGameEnded())
                 game.reset();
-            }else{
+            else
                 game.switchPlayer();
-            }
         }
     }
 
@@ -47,7 +45,7 @@ public class GameViewModel extends ViewModel {
      * la vista pueda reaccionar y actualizarse
      * @return
      */
-    public LiveData<Player> getWinner(){
+    public LiveData<Player> getWinner() {
         return game.winner;
     }
 }
